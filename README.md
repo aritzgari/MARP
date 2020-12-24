@@ -4,3 +4,4 @@ Este el proyecto final de la asignatura de sistemas embebidos. Creado el grupo f
 #Puedo comitear @AritzGaritano
 
 #Yo también, @RubenDominguezTilve
+#y yo, @gorkagomez
