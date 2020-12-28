@@ -2,6 +2,9 @@
 #=== IMPORTS ===
 import snap7
 import time
+import time
+import dht_config
+import RPi.GPIO as GPIO
 
 #=== CONSTANTES ===
 tiempo_bucle = 1 #En segundos
@@ -15,6 +18,14 @@ SLOT = 1
 #Definimos PLC como cliente de Snap7
 global PLC
 PLC = snap7.client.Client()
+#Sensor de temperatura
+deberia_leer = 0
+GPIO.setmode(GPIO.BCM)
+global gpio_pin_switch
+gpio_pin_switch = 24
+gpio_pin_sensorTH = 18
+GPIO.setup(gpio_pin_switch, GPIO.IN)
+sensor = dht_config.DHT(gpio_pin_sensorTH)
 
 #Parámetros de funcionamiento
 temp_min = 0 #en ºC
@@ -41,7 +52,14 @@ def leer_DB(n_DB, offset, cant_bytes):
     desconectar()
     return db
 
+def leer_temperatura():
+    humi, temp = sensor.read()
+    print('Temperatura {0:.1f}'.format(temp))
 
+
+def procesar(numcanal):
+    global deberia_leer
+    deberia_leer = GPIO.input(24)
 
 #=== CODIGO ===
 #PARAMETRIZACIÓN INICIAL
@@ -49,6 +67,9 @@ temp_min = input('Temperatura mínima(ºC): ') #en ºC
 temp_max = input('Temperatura máxima(ºC): ') #en ºC
 humedad_min = input('Humedad mínima(%): ') #en %
 humedad_max = input('Humedad máxima(%): ') #en %
+#Iniciamos el bucle del sensor de temperatura
+GPIO.setup(gpio_pin_switch, GPIO.IN)
+GPIO.add_event_detect(24, GPIO.BOTH, callback=procesar)
 
 #BUCLE DE ACTUALIZACION DE LOS DATOS
 while True:
@@ -76,7 +97,9 @@ while True:
         #TODO error temperatura demasiado alta, activar LED
         print("Hace calor")
 
-
+    if deberia_leer:
+        leer_temperatura()
+    
     if zumbador:
         #TODO activar zumbador
         print("bzzzzz")
