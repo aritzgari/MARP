@@ -1,9 +1,9 @@
-#@Laura Arjona
-#@Sistemas Embebidos. 2020
+# -*- coding: utf-8 -*-
+#@Sistemas Embébidos. 2020
 
 
 #Ejemplo de uso del sensor DHT111
-#En este módulo se realiza la lectura
+#En este modulo se realiza la lectura
 #de los datos del sensor, teniendo en cuenta las estrictas restricciones temporales 
 #https://files.seeedstudio.com/wiki/Grove-TemperatureAndHumidity_Sensor/res/DHT11.pdf
 
@@ -45,7 +45,7 @@ class DHT():
                 GPIO.setup(self.pin,GPIO.IN)
                
                 
-                # Se require un pequeño delay
+                # Se require un pequenho delay
                 for i in range(10):
                     pass
 
