@@ -27,9 +27,9 @@ gpio_pin_sensorTH = 18
 GPIO.setup(gpio_pin_switch, GPIO.IN)
 sensor = dht_config.DHT(gpio_pin_sensorTH)
 
-#Parámetros de funcionamiento
-temp_min = 0 #en ºC
-temp_max = 30 #en ºC
+#Parametros de funcionamiento
+temp_min = 0 #en *C
+temp_max = 30 #en *C
 humedad_min = 20 #en %
 humedad_max = 70 #en %
 
@@ -62,11 +62,11 @@ def procesar(numcanal):
     deberia_leer = GPIO.input(24)
 
 #=== CODIGO ===
-#PARAMETRIZACIÓN INICIAL
-temp_min = input('Temperatura mínima(ºC): ') #en ºC
-temp_max = input('Temperatura máxima(ºC): ') #en ºC
-humedad_min = input('Humedad mínima(%): ') #en %
-humedad_max = input('Humedad máxima(%): ') #en %
+#PARAMETRIZACION INICIAL
+temp_min = input('Temperatura minima(*C): ') #en *C
+temp_max = input('Temperatura maxima(*C): ') #en *C
+humedad_min = input('Humedad minima(%): ') #en %
+humedad_max = input('Humedad maxima(%): ') #en %
 #Iniciamos el bucle del sensor de temperatura
 GPIO.setup(gpio_pin_switch, GPIO.IN)
 GPIO.add_event_detect(24, GPIO.BOTH, callback=procesar)
@@ -89,7 +89,7 @@ while True:
     #TODO leemos temperatura y humedad actual
     temp_actual = 0
     humedad_actual = 0
-    #TODO comparamos con los valores de la parametrización
+    #TODO comparamos con los valores de la parametrizacion
     if temp_min > temp_actual:
         #TODO error temperatura demasiado baja, activar LED
         print("Hace frio")
