@@ -58,10 +58,10 @@ def leer_DB(n_DB, offset, cant_bytes):
     desconectar()
     return db
 
-def leer_temperatura():
+def leer_temperatura_humedad():
     humi, temp = sensor.read()
     #print('Temperatura {0:.1f}'.format(temp))
-    return temp
+    return humi, temp
 
 
 def procesar(numcanal):
@@ -111,7 +111,6 @@ while True:
         aviso9 = snap7.util.get_bool(db, 1325, 1)
         aviso10 = snap7.util.get_bool(db, 1325, 2)
 
-
         if aviso0:
             print("Maquina sin pintura.")
             zumbador = True
@@ -119,27 +118,36 @@ while True:
             print("Nivel de pintura bajo.")
         if aviso2:
             print("Paro de emergencia activo.")
+            zumbador = True
         if aviso3:
-            print("Tiempo de ciclo excedido")
+            print("Tiempo de ciclo excedido.")
+            zumbador = True
         if aviso4:
-            print("Puerta de estación abierta")
+            print("Puerta de estación abierta.")
+            zumbador = True
         if aviso5:
-            print("Robot en fallo")
+            print("Robot en fallo.")
+            zumbador = True
         if aviso6:
-            print("Robot desconectado")
+            print("Robot desconectado.")
+            zumbador = True
         if aviso7:
-            print("Boquilla obstruida")
+            print("Boquilla obstruida.")
+            zumbador = True
         if aviso8:
-            print("Pieza no ha alcanzado posición")
+            print("Pieza no ha alcanzado posición.")
+            zumbador = True
         if aviso9:
-            print("Pieza terminada en espera")
+            print("Pieza terminada en espera.")
+            zumbador = True
         if aviso10:
-            print("Máquina parada, falta de piezas de entrada")
+            print("Máquina parada, falta de piezas de entrada.")
 
-        #TODO leemos temperatura y humedad actual
-        temp_actual = leer_temperatura()
-        humedad_actual = 0
+        #Leemos temperatura y humedad actual
+        humedad_actual, temp_actual = leer_temperatura_humedad()
+
         #Comparamos con los valores de la parametrizacion
+        #Temperatura
         if temp_min > temp_actual:
             #TODO error temperatura demasiado baja, activar LED
             print("Hace frio ({0:.1f}°C)".format(temp_actual))
@@ -147,6 +155,16 @@ while True:
         if temp_max < temp_actual:
             #TODO error temperatura demasiado alta, activar LED
             print("Hace calor ({0:.1f}°C)".format(temp_actual))
+            zumbador = True
+
+        #Humedad
+        if humedad_min > humedad_actual:
+            #TODO error humedad demasiado baja, activar LED
+            print("Ambiente demasiado seco ({0:.1f}%)".format(humedad_actual))
+            zumbador = True
+        if humedad_max < humedad_actual:
+            #TODO error humedad demasiado alta, activar LED
+            print("Ambiente demasiado húmedo ({0:.1f}%)".format(humedad_actual))
             zumbador = True
         
         if zumbador:
@@ -164,5 +182,7 @@ while True:
         numero += 1
         print("Numero: %s"%numero)
         
+        print("===========================")
+
         pantalla.raiz.update_idletasks()
         pantalla.raiz.update()
