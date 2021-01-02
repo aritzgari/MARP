@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+import tkinter.font as font
 
 # La clase 'Aplicacion' ha crecido. En el ejemplo se incluyen
 # nuevos widgets en el método constructor __init__(): Uno de
@@ -17,8 +18,8 @@ class Aplicacion():
         # valores desde otros métodos:
         
         self.raiz = Tk()
-        ancho = 300
-        alto = 200
+        ancho = 600
+        alto = 600
         self.raiz.geometry('%sx%s'%(ancho,alto))
         
         # Impide que los bordes puedan desplazarse para
@@ -30,8 +31,11 @@ class Aplicacion():
         # Define el widget Text 'self.tinfo ' en el que se
         # pueden introducir varias líneas de texto:
         
-        self.tinfo = Text(self.raiz, width=40, height=10)
-        
+        self.tinfo = Text(self.raiz, width=40, height=16) #40, 10
+
+        # Tamaño fuente
+        self.tinfo['font'] = font.Font(size=20)
+
         # Sitúa la caja de texto 'self.tinfo' en la parte
         # superior de la ventana 'self.raiz':
         
@@ -40,7 +44,7 @@ class Aplicacion():
         # Define el widget Button 'self.binfo' que llamará 
         # al metodo 'self.verinfo' cuando sea presionado
         
-        self.binfo = ttk.Button(self.raiz, text='Info')
+        self.binfo = ttk.Button(self.raiz, text='Actualizar')
         
         # Coloca el botón 'self.binfo' debajo y a la izquierda
         # del widget anterior
@@ -92,8 +96,10 @@ class Aplicacion():
         
         # Construye una cadena de texto con toda la
         # información obtenida:
-        texto_info = "Humedad: %s"%(info["humedad"]) + "%\n"
+        texto_info = "========== VALORES ==========\n"
+        texto_info += "Humedad: %s"%(info["humedad"]) + "%\n"
         texto_info += "Temperatura: %s°C"%info["temp"] + "\n"
+        texto_info += "========== AVISOS ==========\n"
         if info["0"]:
             texto_info += "Maquina sin pintura." + "\n"
         if info["1"]:

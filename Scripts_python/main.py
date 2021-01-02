@@ -148,6 +148,15 @@ while True:
         if aviso10:
             print("Máquina parada, falta de piezas de entrada.")
 
+        #Forzado provisional
+        """
+        aviso2 = True
+        aviso4 = True
+        aviso6 = True
+        aviso7 = True
+        aviso10 = True
+        """
+
         #Info pantalla
         Info_pantalla = {
             "0": aviso0,
@@ -208,7 +217,7 @@ while True:
             time.sleep(tiempo_bucle)
 
         #Actualizacion pantalla
-        pantalla.verinfo(Info_pantalla) #TODO pasar los valores que queramos mostrar en pantalla
+        pantalla.verinfo(Info_pantalla)
         
         print("===========================") #Separador de prints
 
