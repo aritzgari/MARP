@@ -165,6 +165,9 @@ while True:
 
         #Leemos temperatura y humedad actual
         humedad_actual, temp_actual = leer_temperatura_humedad()
+        #Y los pasamos a la info de la pantalla
+        Info_pantalla["humedad"] = humedad_actual
+        Info_pantalla["temp"] = temp_actual
 
         #Comparamos con los valores de la parametrizacion
         #Temperatura

@@ -92,7 +92,8 @@ class Aplicacion():
         
         # Construye una cadena de texto con toda la
         # información obtenida:
-        texto_info = ""
+        texto_info = "Humedad: %s"%(info["humedad"]) + "%\n"
+        texto_info += "Temperatura: %s°C"%info["temp"] + "\n"
         if info["0"]:
             texto_info += "Maquina sin pintura." + "\n"
         if info["1"]:
