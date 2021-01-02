@@ -40,8 +40,7 @@ class Aplicacion():
         # Define el widget Button 'self.binfo' que llamará 
         # al metodo 'self.verinfo' cuando sea presionado
         
-        self.binfo = ttk.Button(self.raiz, text='Info', 
-                                command=self.verinfo(0))
+        self.binfo = ttk.Button(self.raiz, text='Info')
         
         # Coloca el botón 'self.binfo' debajo y a la izquierda
         # del widget anterior
@@ -72,7 +71,7 @@ class Aplicacion():
         self.raiz.update_idletasks()
         self.raiz.update()
     
-    def verinfo(self,numero):
+    def verinfo(self,info):
         
         # Borra el contenido que tenga en un momento dado
         # la caja de texto
@@ -93,17 +92,30 @@ class Aplicacion():
         
         # Construye una cadena de texto con toda la
         # información obtenida:
-        
-        texto_info = "Clase de 'raiz': " + info1 + "\n"
-        texto_info += "Resolución y posición: " + info2 + "\n"
-        texto_info += "Anchura ventana: " + info3 + "\n"
-        texto_info += "Altura ventana: " + info4 + "\n"
-        texto_info += "Pos. Ventana X: " + info5 + "\n"
-        texto_info += "Pos. Ventana Y: " + info6 + "\n"
-        texto_info += "Id. de 'raiz': " + info7 + "\n"
-        texto_info += "Nombre objeto: " + info8 + "\n" 
-        texto_info += "Numero: %s"%numero + "\n"
-        
+        texto_info = ""
+        if info["0"]:
+            texto_info += "Maquina sin pintura." + "\n"
+        if info["1"]:
+            texto_info += "Nivel de pintura bajo." + "\n"
+        if info["2"]:
+            texto_info += "Paro de emergencia activo." + "\n"
+        if info["3"]:
+            texto_info += "Tiempo de ciclo excedido." + "\n"
+        if info["4"]:
+            texto_info += "Puerta de estación abierta." + "\n"
+        if info["5"]:
+            texto_info += "Robot en fallo." + "\n"
+        if info["6"]:
+            texto_info += "Robot desconectado." + "\n"
+        if info["7"]:
+            texto_info += "Boquilla obstruida." + "\n"
+        if info["8"]:
+            texto_info += "Pieza no ha alcanzado posición." + "\n"
+        if info["9"]:
+            texto_info += "Pieza terminada en espera." + "\n"
+        if info["10"]:
+            texto_info += "Máquina parada, falta de piezas de entrada." + "\n"
+
         # Inserta la información en la caja de texto:
         self.tinfo.insert("1.0", texto_info)
 

@@ -92,7 +92,6 @@ GPIO.setup(gpio_pin_led_a, GPIO.OUT)
 
 #ELEMENTOS DE LA PANTALLA
 pantalla = Aplicacion()
-numero = 0
 
 
 #BUCLE DE ACTUALIZACION DE LOS DATOS
@@ -149,6 +148,21 @@ while True:
         if aviso10:
             print("Máquina parada, falta de piezas de entrada.")
 
+        #Info pantalla
+        Info_pantalla = {
+            "0": aviso0,
+            "1": aviso1,
+            "2": aviso2,
+            "3": aviso3,
+            "4": aviso4,
+            "5": aviso5,
+            "6": aviso6,
+            "7": aviso7,
+            "8": aviso8,
+            "9": aviso9,
+            "10": aviso10,
+        }        
+
         #Leemos temperatura y humedad actual
         humedad_actual, temp_actual = leer_temperatura_humedad()
 
@@ -191,8 +205,7 @@ while True:
             time.sleep(tiempo_bucle)
 
         #Actualizacion pantalla
-        pantalla.verinfo(numero) #TODO pasar los valores que queramos mostrar en pantalla
-        numero += 1
+        pantalla.verinfo(Info_pantalla) #TODO pasar los valores que queramos mostrar en pantalla
         
         print("===========================") #Separador de prints
 
