@@ -20,15 +20,20 @@ SLOT = 1
 #Definimos PLC como cliente de Snap7
 global PLC
 PLC = snap7.client.Client()
-#Sensor de temperatura
+#Interruptor encendido
 encendido = 0
 GPIO.setmode(GPIO.BCM)
 global gpio_pin_switch
 gpio_pin_switch = 24
+#Buzzer
 global gpio_pin_buzzer
 gpio_pin_buzzer = 23
+#LEDs
 global gpio_pin_led_r
 gpio_pin_led_r = 25
+global gpio_pin_led_a
+gpio_pin_led_a = 26
+#Sensor temperatura y humedad
 gpio_pin_sensorTH = 18
 GPIO.setup(gpio_pin_switch, GPIO.IN)
 sensor = dht_config.DHT(gpio_pin_sensorTH)
@@ -81,7 +86,8 @@ GPIO.add_event_detect(gpio_pin_switch, GPIO.BOTH, callback=procesar)
 GPIO.setup(gpio_pin_buzzer, GPIO.OUT)
 #Iniciamos el pin del LED rojo
 GPIO.setup(gpio_pin_led_r, GPIO.OUT)
-GPIO.output(gpio_pin_led_r,1)
+#Iniciamos el pin del LED azul
+GPIO.setup(gpio_pin_led_a, GPIO.OUT)
 
 
 #ELEMENTOS DE LA PANTALLA
@@ -149,21 +155,28 @@ while True:
         #Comparamos con los valores de la parametrizacion
         #Temperatura
         if temp_min > temp_actual:
-            #TODO error temperatura demasiado baja, activar LED
+            #Error temperatura demasiado baja, activar LED
             print("Hace frio ({0:.1f}°C)".format(temp_actual))
             zumbador = True
+            GPIO.output(gpio_pin_led_a,1)
+        else:
+            GPIO.output(gpio_pin_led_a,0)
+
         if temp_max < temp_actual:
-            #TODO error temperatura demasiado alta, activar LED
+            #Error temperatura demasiado alta, activar LED
             print("Hace calor ({0:.1f}°C)".format(temp_actual))
             zumbador = True
+            GPIO.output(gpio_pin_led_r,1)
+        else:
+            GPIO.output(gpio_pin_led_r,0)
 
         #Humedad
         if humedad_min > humedad_actual:
-            #TODO error humedad demasiado baja, activar LED
+            #Error humedad demasiado baja
             print("Ambiente demasiado seco ({0:.1f}%)".format(humedad_actual))
             zumbador = True
         if humedad_max < humedad_actual:
-            #TODO error humedad demasiado alta, activar LED
+            #Error humedad demasiado alta
             print("Ambiente demasiado húmedo ({0:.1f}%)".format(humedad_actual))
             zumbador = True
         
@@ -178,11 +191,11 @@ while True:
             time.sleep(tiempo_bucle)
 
         #Actualizacion pantalla
-        pantalla.verinfo(numero)
+        pantalla.verinfo(numero) #TODO pasar los valores que queramos mostrar en pantalla
         numero += 1
-        print("Numero: %s"%numero)
         
-        print("===========================")
+        print("===========================") #Separador de prints
 
+        #Actualizamos la pantalla
         pantalla.raiz.update_idletasks()
         pantalla.raiz.update()
