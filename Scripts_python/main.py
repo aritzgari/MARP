@@ -185,27 +185,37 @@ while True:
             print("Hace frio ({0:.1f}°C)".format(temp_actual))
             zumbador = True
             GPIO.output(gpio_pin_led_a,1)
+            Info_pantalla["error_frio"] = 1
         else:
             GPIO.output(gpio_pin_led_a,0)
+            Info_pantalla["error_frio"] = 0
 
         if temp_max < temp_actual:
             #Error temperatura demasiado alta, activar LED
             print("Hace calor ({0:.1f}°C)".format(temp_actual))
             zumbador = True
             GPIO.output(gpio_pin_led_r,1)
+            Info_pantalla["error_calor"] = 1
         else:
             GPIO.output(gpio_pin_led_r,0)
+            Info_pantalla["error_calor"] = 0
 
         #Humedad
         if humedad_min > humedad_actual:
             #Error humedad demasiado baja
             print("Ambiente demasiado seco ({0:.1f}%)".format(humedad_actual))
             zumbador = True
+            Info_pantalla["error_seco"] = 1
+        else:
+            Info_pantalla["error_seco"] = 0
         if humedad_max < humedad_actual:
             #Error humedad demasiado alta
             print("Ambiente demasiado húmedo ({0:.1f}%)".format(humedad_actual))
             zumbador = True
-        
+            Info_pantalla["error_humedo"] = 1
+        else:
+            Info_pantalla["error_humedo"] = 0
+
         if zumbador:
             print("bzzzzz")
             #GPIO.output(gpio_pin_buzzer,1)

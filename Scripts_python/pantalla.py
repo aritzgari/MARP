@@ -122,6 +122,14 @@ class Aplicacion():
             texto_info += "Pieza terminada en espera." + "\n"
         if info["10"]:
             texto_info += "Máquina parada, falta de piezas de entrada." + "\n"
+        if info["error_frio"]:
+            texto_info += "Ambiente frío, aumentar temperatura." + "\n"
+        if info["error_calor"]:
+            texto_info += "Ambiente caliente, disminuir temperatura." + "\n"
+        if info["error_seco"]:
+            texto_info += "Ambiente seco, aumentar humedad." + "\n"
+        if info["error_humedo"]:
+            texto_info += "Ambiente humedo, disminuir humedad." + "\n"
 
         # Inserta la información en la caja de texto:
         self.tinfo.insert("1.0", texto_info)
