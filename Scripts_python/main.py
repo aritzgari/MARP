@@ -78,7 +78,7 @@ def procesar(numcanal):
     encendido = GPIO.input(24)
 
 #=== CODIGO ===
-#PARAMETRIZACION INICIAL TODO Que si no metes nada no pete
+#PARAMETRIZACION INICIAL
 temp_min = int(input('Temperatura minima(°C): ')) #en *C
 temp_max = int(input('Temperatura maxima(°C): ')) #en *C
 humedad_min = int(input('Humedad minima(%): ')) #en %

@@ -104,7 +104,7 @@ class DHT():
                     temp = int(data2)
 
                 else:
-                    print("Error en el bit de paridad!")
+                    #print("Error en el bit de paridad!")
                     return None, "checksum error!"
 
                 return humi, temp
