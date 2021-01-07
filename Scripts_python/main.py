@@ -16,6 +16,10 @@ IP = "192.168.0.1"
 RACK = 0
 SLOT = 1
 
+n_DB = 901
+offset = 0
+cant_bytes = 1836
+
 #=== VARIABLES ===
 #Definimos PLC como cliente de Snap7
 global PLC
@@ -100,7 +104,7 @@ while True:
         #Reseteamos el valor del zumbador para este ciclo
         zumbador = False
 
-        #db = leer_DB(300,0,1)
+        #db = leer_DB(n_DB,offset,cant_bytes)
         db = bytearray(b'\x00\x00\xfe\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x07\xe4\x0c\x16\x03\t.\x16\x01\xd4\xbc\x18\x07\xe4\x0c\x16\x03\n\x024 =\xd8`\x00\x0f\x1c\x94\xfe\x02A4                                                                                                                                                                                                                                                            \xfe\x08Paquillo                                                                                                                                                                                                                                                      \xfe\x04Paroha\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00c\x00F\x00\x1d\x00c?5\x02\x96\xfe\nAleta DCHA                                                                                                                                                                                                                                                    \x00\x00+\x03\xfe\x02A4                                                                                                                                                                                                                                                            \xfe\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00') 
         
         #Leemos cada booleano como una aviso separado
@@ -117,36 +121,36 @@ while True:
         aviso10 = snap7.util.get_bool(db, 1325, 2)
 
         if aviso0:
-            print("Maquina sin pintura.")
+            #print("Maquina sin pintura.")
             zumbador = True
         if aviso1:
-            print("Nivel de pintura bajo.")
+            #print("Nivel de pintura bajo.")
         if aviso2:
-            print("Paro de emergencia activo.")
+            #print("Paro de emergencia activo.")
             zumbador = True
         if aviso3:
-            print("Tiempo de ciclo excedido.")
+            #print("Tiempo de ciclo excedido.")
             zumbador = True
         if aviso4:
-            print("Puerta de estación abierta.")
+            #print("Puerta de estación abierta.")
             zumbador = True
         if aviso5:
-            print("Robot en fallo.")
+            #print("Robot en fallo.")
             zumbador = True
         if aviso6:
-            print("Robot desconectado.")
+            #print("Robot desconectado.")
             zumbador = True
         if aviso7:
-            print("Boquilla obstruida.")
+            #print("Boquilla obstruida.")
             zumbador = True
         if aviso8:
-            print("Pieza no ha alcanzado posición.")
+            #print("Pieza no ha alcanzado posición.")
             zumbador = True
         if aviso9:
-            print("Pieza terminada en espera.")
+            #print("Pieza terminada en espera.")
             zumbador = True
         if aviso10:
-            print("Máquina parada, falta de piezas de entrada.")
+            #print("Máquina parada, falta de piezas de entrada.")
 
         #Forzado provisional
         """
@@ -182,7 +186,7 @@ while True:
         #Temperatura
         if temp_min > temp_actual:
             #Error temperatura demasiado baja, activar LED
-            print("Hace frio ({0:.1f}°C)".format(temp_actual))
+            #print("Hace frio ({0:.1f}°C)".format(temp_actual))
             zumbador = True
             GPIO.output(gpio_pin_led_a,1)
             Info_pantalla["error_frio"] = 1
@@ -192,7 +196,7 @@ while True:
 
         if temp_max < temp_actual:
             #Error temperatura demasiado alta, activar LED
-            print("Hace calor ({0:.1f}°C)".format(temp_actual))
+            #print("Hace calor ({0:.1f}°C)".format(temp_actual))
             zumbador = True
             GPIO.output(gpio_pin_led_r,1)
             Info_pantalla["error_calor"] = 1
@@ -203,14 +207,14 @@ while True:
         #Humedad
         if humedad_min > humedad_actual:
             #Error humedad demasiado baja
-            print("Ambiente demasiado seco ({0:.1f}%)".format(humedad_actual))
+            #print("Ambiente demasiado seco ({0:.1f}%)".format(humedad_actual))
             zumbador = True
             Info_pantalla["error_seco"] = 1
         else:
             Info_pantalla["error_seco"] = 0
         if humedad_max < humedad_actual:
             #Error humedad demasiado alta
-            print("Ambiente demasiado húmedo ({0:.1f}%)".format(humedad_actual))
+            #print("Ambiente demasiado húmedo ({0:.1f}%)".format(humedad_actual))
             zumbador = True
             Info_pantalla["error_humedo"] = 1
         else:
@@ -230,12 +234,14 @@ while True:
         Info_pantalla["tmin"] = temp_min
         Info_pantalla["tmax"] = temp_max
         Info_pantalla["hmin"] = humedad_min
-        Info_pantalla["hmin"] = humedad_max
+        Info_pantalla["hmax"] = humedad_max
 
         #Actualizacion pantalla
         Parametros = pantalla.verinfo(Info_pantalla)
         temp_min = int(Parametros["tmin"])
         temp_max = int(Parametros["tmax"])
+        humedad_min = int(Parametros["hmin"])
+        humedad_max = int(Parametros["hmax"])
         
         print("===========================") #Separador de prints
 

@@ -18,7 +18,7 @@ class Aplicacion():
         # valores desde otros métodos:
         
         self.raiz = Tk()
-        ancho = 1000
+        ancho = 600
         alto = 800
         self.raiz.geometry('%sx%s'%(ancho,alto))
         
@@ -27,6 +27,16 @@ class Aplicacion():
         
         self.raiz.resizable(width=False,height=False)
         self.raiz.title('MARP')
+        
+        # Define el widget Button 'self.binfo' que llamará 
+        # al metodo 'self.verinfo' cuando sea presionado
+        
+        #self.binfo = ttk.Button(self.raiz, text='Actualizar')
+        
+        # Coloca el botón 'self.binfo' debajo y a la izquierda
+        # del widget anterior
+                                
+        #self.binfo.pack(side=LEFT)
         
         # Define el widget Text 'self.tinfo ' en el que se
         # pueden introducir varias líneas de texto:
@@ -40,54 +50,60 @@ class Aplicacion():
         # superior de la ventana 'self.raiz':
         
         self.tinfo.pack(side=TOP)
-        
-        # Define el widget Button 'self.binfo' que llamará 
-        # al metodo 'self.verinfo' cuando sea presionado
-        
-        #self.binfo = ttk.Button(self.raiz, text='Actualizar')
-        
-        # Coloca el botón 'self.binfo' debajo y a la izquierda
-        # del widget anterior
-                                
-        #self.binfo.pack(side=LEFT)
 
+        # La rejilla para que se ordene todo bonito
+        self.frame_botones = Frame(self.raiz, width=ancho, height=alto)
+        self.frame_botones.pack()
+        
         # Define el botón 'self.bsalir'. En este caso
         # cuando sea presionado, el método destruirá o
         # terminará la aplicación-ventana 'self.raíz' con 
         # 'self.raiz.destroy'
         
-        self.bsalir = ttk.Button(self.raiz, text='Salir', 
+        self.bsalir = ttk.Button(self.frame_botones, text='Salir', 
                                  command=self.raiz.destroy)
-                                 
+        self.bigchungus = Label(self.frame_botones, text= " ")
+        self.bigchunguss = Label(self.frame_botones, text= " ")
         # Coloca el botón 'self.bsalir' a la derecha del 
         # objeto anterior.
                                  
-        self.bsalir.pack(side=RIGHT)
+        #self.bsalir.pack(side=RIGHT)
+        self.bsalir.grid(row=4,column=0,columnspan=4)
+        self.bigchungus.grid(row=3,column=0,columnspan=4)
+        self.bigchunguss.grid(row=0,column=0,columnspan=4)
         
         # Intento de campo de entrada
-        self.l_ctempmin = Label(self.raiz, text = "Temp min:")
-        self.l_ctempmin.pack(side=LEFT)
+        self.l_ctempmin = Label(self.frame_botones, text = "Temp min:")
+        #self.l_ctempmin.pack(side=LEFT)
+        self.l_ctempmin.grid(row=1,column=0)
 
-        self.ctempmin = Entry(self.raiz)
-        self.ctempmin.pack(side=LEFT)
+        self.ctempmin = Entry(self.frame_botones)
+        #self.ctempmin.pack(side=LEFT)
+        self.ctempmin.grid(row=1,column=1)
 
-        self.l_ctempmax = Label(self.raiz, text = "Temp max:")
-        self.l_ctempmax.pack(side=LEFT)
+        self.l_ctempmax = Label(self.frame_botones, text = "Temp max:")
+        #self.l_ctempmax.pack(side=LEFT)
+        self.l_ctempmax.grid(row=2,column=0)
 
-        self.ctempmax = Entry(self.raiz)
-        self.ctempmax.pack(side=LEFT)
+        self.ctempmax = Entry(self.frame_botones)
+        #self.ctempmax.pack(side=LEFT)
+        self.ctempmax.grid(row=2,column=1)
 
-        self.l_chummin = Label(self.raiz, text = "Hum min:")
-        self.l_chummin.pack(side=LEFT)
+        self.l_chummin = Label(self.frame_botones, text = "Hum min:")
+        #self.l_chummin.pack(side=LEFT)
+        self.l_chummin.grid(row=1,column=2)
 
-        self.chummin = Entry(self.raiz)
-        self.chummin.pack(side=LEFT)
+        self.chummin = Entry(self.frame_botones)
+        #self.chummin.pack(side=LEFT)
+        self.chummin.grid(row=1,column=3)
 
-        self.l_chummax = Label(self.raiz, text = "Hum max:")
-        self.l_chummax.pack(side=LEFT)
+        self.l_chummax = Label(self.frame_botones, text = "Hum max:")
+        #self.l_chummax.pack(side=LEFT)
+        self.l_chummax.grid(row=2,column=2)
 
-        self.chummax = Entry(self.raiz)
-        self.chummax.pack(side=LEFT)
+        self.chummax = Entry(self.frame_botones)
+        #self.chummax.pack(side=LEFT)
+        self.chummax.grid(row=2,column=3)
         
         # Valores parametros a campo entrada
         #self.ctempmin.delete(0,10) #No es necesario porque se crea vacio
