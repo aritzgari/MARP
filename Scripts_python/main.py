@@ -123,7 +123,7 @@ while True:
         if aviso0:
             #print("Maquina sin pintura.")
             zumbador = True
-        if aviso1:
+        #if aviso1:
             #print("Nivel de pintura bajo.")
         if aviso2:
             #print("Paro de emergencia activo.")
@@ -149,7 +149,7 @@ while True:
         if aviso9:
             #print("Pieza terminada en espera.")
             zumbador = True
-        if aviso10:
+        #if aviso10:
             #print("Máquina parada, falta de piezas de entrada.")
 
         #Forzado provisional
