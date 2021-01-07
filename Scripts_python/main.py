@@ -3,7 +3,6 @@
 #=== IMPORTS ===
 import snap7
 import time
-import time
 import dht_config
 import RPi.GPIO as GPIO
 from pantalla import *
