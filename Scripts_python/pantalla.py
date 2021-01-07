@@ -9,7 +9,7 @@ import tkinter.font as font
 # widget, una caja de texto: un evento ejecuta una acción: 
 
 class Aplicacion():
-    def __init__(self):
+    def __init__(self,tmin,tmax,hmin,hmax):
         
         # En el ejemplo se utiliza el prefijo 'self' para
         # declarar algunas variables asociadas al objeto 
@@ -18,8 +18,8 @@ class Aplicacion():
         # valores desde otros métodos:
         
         self.raiz = Tk()
-        ancho = 600
-        alto = 600
+        ancho = 1000
+        alto = 800
         self.raiz.geometry('%sx%s'%(ancho,alto))
         
         # Impide que los bordes puedan desplazarse para
@@ -31,7 +31,7 @@ class Aplicacion():
         # Define el widget Text 'self.tinfo ' en el que se
         # pueden introducir varias líneas de texto:
         
-        self.tinfo = Text(self.raiz, width=40, height=16) #40, 10
+        self.tinfo = Text(self.raiz, width=40, height=20) #40, 10
 
         # Tamaño fuente
         self.tinfo['font'] = font.Font(size=20)
@@ -44,13 +44,13 @@ class Aplicacion():
         # Define el widget Button 'self.binfo' que llamará 
         # al metodo 'self.verinfo' cuando sea presionado
         
-        self.binfo = ttk.Button(self.raiz, text='Actualizar')
+        #self.binfo = ttk.Button(self.raiz, text='Actualizar')
         
         # Coloca el botón 'self.binfo' debajo y a la izquierda
         # del widget anterior
                                 
-        self.binfo.pack(side=LEFT)
-        
+        #self.binfo.pack(side=LEFT)
+
         # Define el botón 'self.bsalir'. En este caso
         # cuando sea presionado, el método destruirá o
         # terminará la aplicación-ventana 'self.raíz' con 
@@ -64,13 +64,47 @@ class Aplicacion():
                                  
         self.bsalir.pack(side=RIGHT)
         
+        # Intento de campo de entrada
+        self.l_ctempmin = Label(self.raiz, text = "Temp min:")
+        self.l_ctempmin.pack(side=LEFT)
+
+        self.ctempmin = Entry(self.raiz)
+        self.ctempmin.pack(side=LEFT)
+
+        self.l_ctempmax = Label(self.raiz, text = "Temp max:")
+        self.l_ctempmax.pack(side=LEFT)
+
+        self.ctempmax = Entry(self.raiz)
+        self.ctempmax.pack(side=LEFT)
+
+        self.l_chummin = Label(self.raiz, text = "Hum min:")
+        self.l_chummin.pack(side=LEFT)
+
+        self.chummin = Entry(self.raiz)
+        self.chummin.pack(side=LEFT)
+
+        self.l_chummax = Label(self.raiz, text = "Hum max:")
+        self.l_chummax.pack(side=LEFT)
+
+        self.chummax = Entry(self.raiz)
+        self.chummax.pack(side=LEFT)
+        
+        # Valores parametros a campo entrada
+        #self.ctempmin.delete(0,10) #No es necesario porque se crea vacio
+        #self.ctempmax.delete(0,10) #No es necesario porque se crea vacio
+        self.ctempmin.insert(0,tmin)
+        self.ctempmax.insert(0,tmax)
+        self.chummin.insert(0,hmin)
+        self.chummax.insert(0,hmax)
+
+
         # El foco de la aplicación se sitúa en el botón
         # 'self.binfo' resaltando su borde. Si se presiona
         # la barra espaciadora el botón que tiene el foco
         # será pulsado. El foco puede cambiar de un widget
         # a otro con la tecla tabulador [tab]
         
-        self.binfo.focus_set()
+        #self.binfo.focus_set()
         #self.raiz.mainloop()
         self.raiz.update_idletasks()
         self.raiz.update()
@@ -93,7 +127,7 @@ class Aplicacion():
         info7 = str(self.raiz.winfo_id())
         info8 = self.raiz.winfo_name()
         info9 = self.raiz.winfo_manager()
-        
+
         # Construye una cadena de texto con toda la
         # información obtenida:
         texto_info = "========== VALORES ==========\n"
@@ -131,11 +165,25 @@ class Aplicacion():
         if info["error_humedo"]:
             texto_info += "Ambiente humedo, disminuir humedad." + "\n"
 
+        Retorno = {}
+        Retorno["tmin"] = self.ctempmin.get()
+        Retorno["tmax"] = self.ctempmax.get()
+        Retorno["hmin"] = self.chummin.get()
+        Retorno["hmax"] = self.chummax.get()
+        texto_info += "======== PARÁMETROS ========\n"
+        texto_info += "TºMin: %s \n"%Retorno["tmin"]
+        texto_info += "TºMax: %s \n"%Retorno["tmax"]
+        texto_info += "HumMin: %s \n"%Retorno["hmin"]
+        texto_info += "HumMax: %s \n"%Retorno["hmax"]
+
+
         # Inserta la información en la caja de texto:
         self.tinfo.insert("1.0", texto_info)
 
+        return Retorno
+
 def main():
-    mi_app = Aplicacion()
+    mi_app = Aplicacion(0,0,0,0)
     return 0
 
 if __name__ == '__main__':

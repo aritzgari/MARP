@@ -91,7 +91,7 @@ GPIO.setup(gpio_pin_led_a, GPIO.OUT)
 
 
 #ELEMENTOS DE LA PANTALLA
-pantalla = Aplicacion()
+pantalla = Aplicacion(temp_min,temp_max,humedad_min,humedad_max)
 
 
 #BUCLE DE ACTUALIZACION DE LOS DATOS
@@ -226,8 +226,16 @@ while True:
             GPIO.output(gpio_pin_buzzer,0)
             time.sleep(tiempo_bucle)
 
+        #Parametros de funcionamiento a pantalla
+        Info_pantalla["tmin"] = temp_min
+        Info_pantalla["tmax"] = temp_max
+        Info_pantalla["hmin"] = humedad_min
+        Info_pantalla["hmin"] = humedad_max
+
         #Actualizacion pantalla
-        pantalla.verinfo(Info_pantalla)
+        Parametros = pantalla.verinfo(Info_pantalla)
+        temp_min = int(Parametros["tmin"])
+        temp_max = int(Parametros["tmax"])
         
         print("===========================") #Separador de prints
 
