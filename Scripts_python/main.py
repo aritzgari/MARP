@@ -11,7 +11,7 @@ from pantalla import *
 tiempo_bucle = 1 #En segundos
 
 #Datos de conexion
-IP = "192.168.0.1"
+IP = "192.168.0.2"
 RACK = 0
 SLOT = 1
 
